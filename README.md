@@ -1,53 +1,68 @@
-# Leave the Lamp Alone
+# The Smash & Save
 
-> A minimalist, atmospheric physics simulation and interactive sound toy built in a single self-contained HTML file.
+> A fast-paced interactive branded mini-game (60–90s) built for the home-repair brand **FIXnGO**. Delivered in a single self-contained `index.html` file with HTML5 Canvas 2D physics, procedural Web Audio synthesis, and dynamic responsive layout for mobile and desktop.
 
-**Live Demo**: [https://itsmesyaam.github.io/buld-breaking/](https://itsmesyaam.github.io/buld-breaking/)
+**Live Site**: [https://itsmesyaam.github.io/buld-breaking/](https://itsmesyaam.github.io/buld-breaking/)
 
 ---
 
-## Overview
+## The Concept
 
-A warm vintage porch lamp hangs in the quiet dark. A wall switch rests nearby, and a wooden slingshot sits on the floor with a supply of smooth pebbles. Everything responds in real time with canvas rendering and procedural Web Audio synthesis.
+The game revolves around two contrasting visual worlds that communicate the core brand message:
+- **World A ("Mischief")**: Grungy, dim, noisy, and rebellious. The player aims a slingshot at a solitary glowing desk lamp in a quiet bedroom and shatters the bulb in slow-motion.
+- **World B ("FIXnGO")**: Clean, bright, high-tech, and reassuring. Mom's footsteps approach down the hallway, prompting an emergency call to FIXnGO. A technician somersaults through the window, tosses the Fix-Blaster, and the player rewinds the glass shards back into place before the door opens!
 
-### Features
+---
 
-- **Interactive Hanging Lamp**: Grab and swing the lampshade with realistic pendulum physics and rotational inertia.
-- **Glass Bulb Destruction & Repair**: Strike the bulb with pebbles to trigger dynamic fracture physics with glass shards scattering across the floor. Broken bulbs automatically screw back in and flicker to life.
-- **Slingshot Physics**: Drag backwards on the rubber band to load and aim with real-time parabolic trajectory guides.
-- **Wall Switch**: Click or shoot pebbles directly at the wall switch to toggle the light on and off.
-- **Atmospheric Lighting**: Procedural radial illumination, dust motes floating through the beam, ground reflections, and warm room glow.
-- **Pure Procedural Audio**: Synthesized with the Web Audio API — metallic clangs, glass fractures, switch clicks, elastic twangs, and floor thuds with zero external asset dependencies.
-- **Mobile Responsive Design**:
-  - Full touch support with safe-area insets (`env(safe-area-inset-*)`).
-  - Dynamic viewport handling (`100dvh`) preventing browser toolbar clipping.
-  - Generous touch hit targets calibrated for touchscreen finger precision.
-  - Responsive layout geometry for portrait phones, landscape tablets, and high-DPI desktop screens.
-  - Zero pinch/scroll conflicts (`touch-action: none`, `overscroll-behavior: none`).
+## 13-State Finite State Machine (FSM)
+
+```
+[INTRO] ──► [AIM] ──► [SMASH_SLOWMO] ──► [BLACKOUT] ──► [MOM_ALERT] ──► [PHONE_CALL]
+                                                                               │
+[CLIMAX] ◄── [MAGIC_REWIND] ◄── [FIX_MODE] ◄── [TECH_ENTRY] ◄── [VAN_ARRIVAL] ◄┘
+   │
+   ├──► [BRAND_REVEAL] (Success)
+   └──► [FAIL] (Timeout)
+```
+
+1. **INTRO**: Grungy stencil title card with start button.
+2. **AIM**: Slingshot physics with parabolic trajectory guide and unlimited tries.
+3. **SMASH_SLOWMO**: Time dilates to 0.2x. Glass shatters into 60 polygon shards with floor/desk bounce physics and glints.
+4. **BLACKOUT**: Lamp turns off. Moonlight faintly illuminates the scattered shards.
+5. **MOM_ALERT**: Footsteps echo, light strip shines under door, 10s digital countdown begins with red vignette pulse and heartbeat SFX.
+6. **PHONE_CALL**: Game pauses. Glowing neon smartphone slides up with massive pulsing "Call FIXnGO!" button.
+7. **VAN_ARRIVAL**: Futuristic FIXnGO van with cyan neon strips screeches to a halt outside the window.
+8. **TECH_ENTRY**: Technician bursts through the window with a somersault and tosses the spinning "Fix-Blaster".
+9. **FIX_MODE**: UI morphs into clean white/cyan FIXnGO branding. Dragging the blaster charges shards with laser arcs and builds combo chains.
+10. **MAGIC_REWIND**: Charged shards defy gravity and fly back along eased curved paths with golden sparks.
+11. **CLIMAX**: Filament reconnects with an animated electrical arc, lamp bursts on brighter than ever, technician salutes and vanishes out the window, and Mom enters: *"Wow, this room looks great!"*
+12. **BRAND_REVEAL**: FIXnGO logo drops down with light sweep, headline *"We fix your 'Oops' before anyone even notices"*, stats card (time taken, best combo, time to spare), and dual CTAs.
+13. **FAIL**: If the countdown hits 0, Mom gasps: *"WHAT happened in here?!"* with retry and booking options.
 
 ---
 
 ## Controls
 
-| Device | Action | Interaction |
-| :--- | :--- | :--- |
-| **Mouse / Touch** | **Aim & Shoot** | Drag backwards on the slingshot pebble and release |
-| **Mouse / Touch** | **Swing Lamp** | Drag the lamp shade or bulb directly |
-| **Mouse / Touch** | **Wall Switch** | Click/tap the switch or hit it with a pebble |
-| **Keyboard** | **Toggle Light** | Press `Spacebar` |
-| **Audio** | **Sound Toggle** | Click/tap the `sound: on/off` pill in the top-right |
+| Action | Mouse / Trackpad | Touchscreen | Keyboard |
+| :--- | :--- | :--- | :--- |
+| **Aim & Shoot Slingshot** | Click & drag pebble, release | Touch & drag pebble, release | Hold `Spacebar` to auto-fire |
+| **Call FIXnGO** | Click "Call FIXnGO!" | Tap "Call FIXnGO!" | Press `Spacebar` or `Enter` |
+| **Repair Shards** | Drag Fix-Blaster reticle over shards | Drag finger over shards | `Spacebar` to auto-target nearest shard |
+| **Toggle Audio** | Click speaker icon in header | Tap speaker icon | Press `M` key |
+| **Toggle Fullscreen** | Click fullscreen icon in header | Tap fullscreen icon | Press `F` key |
 
 ---
 
-## Tech Stack
+## Tech Stack & Architecture
 
-- **HTML5 & CSS3**: Pure modern CSS with CSS variables, fluid clamps, and safe-area adaptation.
-- **Canvas 2D API**: Smooth 60 FPS procedural rendering with composite blend modes.
-- **Web Audio API**: Real-time noise generators, oscillators, and envelope shaping.
-- **Zero Dependencies**: Self-contained single file with no build steps, bundlers, or external images/audio files.
+- **Single File**: Self-contained HTML + CSS + vanilla JS with zero external dependencies (no image or audio files; Google Fonts allowed).
+- **Canvas 2D Physics Engine**: Custom gravity, angular velocity, polygon rendering, and collision detection with restitution.
+- **Web Audio API**: 14 distinct procedurally synthesized sound effects (rubber stretch, twang, glass shatter, heartbeat, footsteps, phone ring, tire screech, window burst, crystal pings, magical rewind, and bell chime).
+- **Responsive Design**: Fixed 16:9 landscape aspect ratio on desktop and 9:16 portrait on mobile with dynamic touch targets and safe area insets.
+- **Accessibility**: Screen reader live announcements (`aria-live="polite"`), full keyboard navigation, and `prefers-reduced-motion` compliance.
 
 ---
 
 ## License
 
-MIT
+MIT © 2026 FIXnGO Technologies Inc.
