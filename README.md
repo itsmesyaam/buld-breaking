@@ -2,10 +2,14 @@
 
 > An atmospheric, physics-driven interactive canvas story & simulation. A man steps out of his house onto a dark porch, tries the light switch to no avail, and calls his neighbor—Bob the electrician. With a swift throw of his heavy wrench across the yard—**CLANG!**—percussive maintenance strikes and the porch blazes to life!
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Play%20Online-success?style=for-the-badge&logo=githubpages&logoColor=white)](https://itsmesyaam.github.io/buld-breaking/)
+
 [![HTML5 Canvas](https://img.shields.io/badge/HTML5-Canvas-orange?logo=html5)](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
 [![Web Audio API](https://img.shields.io/badge/Web%20Audio-Procedural%20Synth-blue?logo=webrtc)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
 [![Theme Animation](https://img.shields.io/badge/Theme-Narrative%20Animation-brightgreen)](#)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-success)](#)
+
+👉 **Play the Live Demo:** [https://itsmesyaam.github.io/buld-breaking/](https://itsmesyaam.github.io/buld-breaking/)
 
 ---
 
