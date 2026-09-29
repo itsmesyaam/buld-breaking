@@ -48,8 +48,8 @@ The game revolves around two contrasting visual worlds that communicate the core
 | **Aim & Shoot Slingshot** | Click & drag pebble, release | Touch & drag pebble, release | Hold `Spacebar` to auto-fire |
 | **Call FIXnGO** | Click "Call FIXnGO!" | Tap "Call FIXnGO!" | Press `Spacebar` or `Enter` |
 | **Repair Shards** | Drag Fix-Blaster reticle over shards | Drag finger over shards | `Spacebar` to auto-target nearest shard |
-| **Toggle Audio** | Click speaker icon in header | Tap speaker icon | Press `M` key |
-| **Toggle Fullscreen** | Click fullscreen icon in header | Tap fullscreen icon | Press `F` key |
+| **Toggle Audio** | Click speaker icon in top-right pill | Tap speaker icon | Press `M` key |
+| **Toggle Fullscreen** | Click fullscreen icon in top-right pill | Tap fullscreen icon | Press `F` key |
 
 ---
 
