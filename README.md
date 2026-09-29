@@ -1,103 +1,134 @@
-# Leave the Lamp Alone — The Automatic Repair Loop 💡🔧⚡
+# Leave the Lamp Alone 💡
 
-> A polished, cozy storybook-style interactive animation and physics playground built with vanilla HTML5, CSS, and JavaScript. Break the hanging bulb with throwables (wrenches, hammers, pebbles) to trigger a fully automated 9-stage repair loop where Arthur calls Bob the electrician, who arrives in his utility van, sets up his folding ladder, and performs percussive maintenance!
+> **"Three kids. One bulb. One very patient electrician."**  
+> A responsive, story-driven animated website and physics simulation set in a quiet Kerala neighborhood at night.
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Play%20Online-success?style=for-the-badge&logo=githubpages&logoColor=white)](https://itsmesyaam.github.io/buld-breaking/)
 
-[![HTML5 Canvas](https://img.shields.io/badge/HTML5-Canvas%20%2B%20SVG-orange?logo=html5)](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
-[![Web Audio API](https://img.shields.io/badge/Web%20Audio-Procedural%20Synth-blue?logo=webrtc)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
-[![State Machine](https://img.shields.io/badge/FSM-Automatic%20Repair%20Loop-purple)](#)
+[![HTML5 Canvas + SVG](https://img.shields.io/badge/HTML5-Canvas%20%2B%20SVG-orange?logo=html5)](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+[![Web Audio API](https://img.shields.io/badge/Web%20Audio-Procedural%20Synthesis-blue?logo=webrtc)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+[![Endless Loop](https://img.shields.io/badge/FSM-Endless%20Story%20Loop-purple)](#)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen)](#)
 
-👉 **Play the Live Experience:** [https://itsmesyaam.github.io/buld-breaking/](https://itsmesyaam.github.io/buld-breaking/)
+👉 **Experience It Live:** [https://itsmesyaam.github.io/buld-breaking/](https://itsmesyaam.github.io/buld-breaking/)
 
 ---
 
-## 🎬 The Automatic Repair Loop (FSM)
+## 📖 The Story & 8-Beat Endless Loop
 
-Whenever the bulb breaks—either during the scripted **Story Mode** or in **Free Play**—the repair loop starts automatically without requiring any user clicks:
+A quiet street at night. On the left is **Arthur's house** with a porch lamp hanging over the front door. On the right, across the street, is **"Bob's Electricals"**, a small workshop with a glowing neon sign and a corrugated metal shutter. In the middle, behind a garden bush and stone wall, hide three mischievous neighborhood kids: **Rinku**, **Meera**, and **Tuttu**.
 
 ```mermaid
-stateDiagram-v2
-    [*] --> LIT
-    LIT --> BROKEN : Bulb breaks (0-1s)
-    BROKEN --> NOTICED : Arthur steps out (1-2.5s)
-    NOTICED --> CALLING : Phone overlay rings (2.5-5s)
-    CALLING --> EN_ROUTE : Bob's van arrives (5-8s)
-    EN_ROUTE --> CLIMBING : Sets ladder & climbs (8-10s)
-    CLIMBING --> REPLACING : Screws in new bulb (10-12.5s)
-    REPLACING --> TESTING : Switch flips & flickers (12.5-14s)
-    TESTING --> PACKING_UP : Bob packs ladder & van (14-17s)
-    PACKING_UP --> LEAVING : Van drives off, door closes
-    LEAVING --> LIT : Ready for next break!
+flowchart TD
+    A["1. Mischief 🤫<br/>Arthur inside. Kids whisper behind bush and aim."] --> B["2. Break 💥<br/>Bulb shatters! Darkness falls. Kids panic-hide."]
+    B --> C["3. Owner Comes Out 🚪<br/>Arthur steps out in slippers: 'Not AGAIN!?'"]
+    C --> D["4. The Call 📞<br/>Arthur dials Bob. Phone rings inside workshop."]
+    D --> E["5. Electrician Arrives 🚶<br/>Shutter rolls up. Bob crosses street with ladder."]
+    E --> F["6. Repair 🪜<br/>Bob climbs up, replaces bulb, flickers & tests."]
+    F --> G["7. Everyone Goes Back 🏠<br/>Bob into workshop (shutter down). Arthur sleeps (window dark)."]
+    G --> H["8. Kids Return 👀<br/>Pause... Kids peek out: 'He's gone… again!'"]
+    H --> A
 ```
 
-### Scene-by-Scene Breakdown:
-1. **BROKEN (0–1s)**: Glass shatters with 40+ physics-driven shards falling and bouncing. The light cuts out, accompanied by procedural glass-break SFX. `Bulbs Broken +1`.
-2. **NOTICED (1–2.5s)**: Arthur walks out the front door as warm interior light spills across the deck. He looks up in dismay: *"Oh no… not again!"*
-3. **CALLING (2.5–5s)**: A mini phone overlay pops up: *"Calling Bob ⚡ Electrician"*, with pulse ringing and ring SFX. Bob answers: *"On my way!"*
-4. **EN_ROUTE (5–8s)**: Bob's electrician van drives in with headlights and low engine hum, then parks. Bob steps out with hard hat, toolbox, and folding ladder.
-5. **CLIMBING (8–10s)**: Bob places the ladder under the fixture and climbs up with step-by-step ladder clanks.
-6. **REPLACING (10–12.5s)**: Squeaking sound as Bob removes the broken base, then screws in a fresh bulb with a golden chiming sparkle.
-7. **TESTING (12.5–14s)**: Bob flips the wall switch. The bulb flickers 2–3 times, then settles into a steady, soft radial bloom. Arthur: *"You're a lifesaver, Bob!"* Bob: *"Anytime. Try not to break it!"* (Or on every 3rd repair: *"Third time this week, Arthur! Added a cage!"*).
-8. **PACKING_UP / LEAVING (14–17s)**: Bob climbs down, folds the ladder, drives off, and Arthur returns inside.
-9. **LIT**: Idle state restored, ready for the next interaction!
+### Realistic Spatial Continuity (No Teleportation):
+- **Bob** only ever enters and leaves through **his workshop** (shutter rolls up/down).
+- **Arthur** only ever enters and leaves through **his front door** (door opens/closes; bedroom window goes dark when he sleeps).
+- **The Kids** stay ducked behind cover whenever adults are outside, with only their eyes peeking out.
 
 ---
 
-## 🕹️ Controls & Features
+## 🎭 Meet the Cast
 
-| Control | Input | Description |
-| :--- | :--- | :--- |
-| **Throw (Free Play)** | Click & drag / Tap anywhere | Drag for slingshot trajectory with aiming dots, or click directly towards the bulb. |
-| **Pick Throwable** | Click toolbar buttons | 🔧 **Wrench** (breaks in 2 hits), 🔨 **Hammer** (breaks in 1 hit), 🪨 **Pebble** (breaks in 3 hits). |
-| **Skip Repair ⏩** | Click Skip button | Fast-forwards the active repair sequence at **4x speed**. |
-| **Replay Story** | Click Replay button | Plays the scripted intro cutscene from the beginning. |
-| **Toggle Mode** | Click Free Play / Story | Switch between free-form throwing sandbox and story mode. |
-| **Sound Toggle** | Click Sound button | Mute or unmute procedural Web Audio effects (defaults muted per autoplay policy). |
+| Character | Role | Weapon / Gear | Personality |
+| :--- | :--- | :--- | :--- |
+| **Arthur** | The Homeowner | Fuzzy Slippers & Flashlight | Just wants one peaceful night of sleep without hearing shattering glass. |
+| **Bob** | The Electrician | Folding Ladder & ₹250 Bill | Patient neighbor who keeps replacing the porch bulb every time it breaks. |
+| **Rinku** | The Strategist | River Pebble 🪨 (3 hits) | Mastermind behind the bush with pockets full of smooth stones. |
+| **Meera** | The Street Captain | Cricket Ball 🏏 (2 hits) | Fast-bowler accuracy; only needs two solid strikes to crack the glass. |
+| **Tuttu** | The Crafty One | Origami Paper Plane ✈️ (1 hit) | Folded an aerodynamic paper plane with a rock nose-cone for instant impact. |
+
+---
+
+## 🎮 Modes & Controls
+
+- **▶ Watch Story (Default)**: The 8-beat story loop plays automatically and endlessly with progressive variations (flashlight inspection on repair 5, pillow-hat on repair 7, and near misses).
+- **🎯 Play as the Kids**: Take direct control!
+  - Pick a kid / throwable: **Rinku (🪨 Pebble)**, **Meera (🏏 Cricket Ball)**, or **Tuttu (✈️ Paper Plane)**.
+  - Click or tap anywhere towards the bulb to throw along a physics trajectory.
+  - Watch the glass develop cracks before bursting.
+  - Once broken, steps 3–8 (owner, phone call, electrician, repair, return) run **automatically** with no user input.
+  - Throwing is disabled until the adults go back inside ("Wait till the grown-ups go inside…").
+- **Controls Bar**:
+  - `⏸ Pause` / `▶ Resume`
+  - `⏩ 2x` speed toggle
+  - `🔇 Sound: Off` / `🔊 Sound: On` toggle (starts muted per browser autoplay policy)
+  - Interactive **Chapter Cards** that highlight in real-time and allow jumping directly to any beat.
 
 ---
 
 ## ⚙️ Config Values You Can Tweak
 
-All timings, costs, and gameplay parameters are centralized in `CONFIG` at the top of `<script>` in [`index.html`](file:///h:/buld%20breaking/index.html):
+All timings, dialogues, prices, and ballistics parameters live in `const CONFIG` inside `<script>` in [`index.html`](file:///h:/buld%20breaking/index.html):
 
 ```javascript
 const CONFIG = {
   timings: {
-    brokenDuration: 900,     // Glass break & darkness duration (ms)
-    noticedDuration: 1500,   // Arthur stepping out duration (ms)
-    callingDuration: 2400,   // Phone ring & Bob's reply duration (ms)
-    enRouteDuration: 2800,   // Van drive-in and parking duration (ms)
-    climbingDuration: 1800,  // Ladder placement & climb duration (ms)
-    replacingDuration: 2400, // Socket cleaning & bulb screw-in duration (ms)
-    testingDuration: 1500,   // Switch flicker & celebration duration (ms)
-    packingDuration: 2800    // Packing up & drive-off duration (ms)
+    mischiefWhisper: 1800,  // Kids whispering before throw (ms)
+    throwFlight: 900,       // Projectile flight time (ms)
+    breakShock: 1400,       // Kids gasp & hide (ms)
+    ownerOut: 2000,         // Arthur opens door & looks around (ms)
+    callPhone: 2400,        // Phone ringing cadence (ms)
+    shutterOpen: 1200,      // Workshop shutter rolls up (ms)
+    bobWalk: 2400,          // Bob crosses street to house (ms)
+    climbLadder: 1800,      // Bob climbs ladder (ms)
+    replaceBulb: 2400,      // Unscrew old & screw in new bulb (ms)
+    testSwitch: 1600,       // Switch flickers & dialogue (ms)
+    bobWalkBack: 2400,      // Bob crosses back to workshop (ms)
+    shutterClose: 1200,     // Shutter rolls down (ms)
+    ownerGoIn: 1600,        // Arthur enters & window goes dark (ms)
+    quietPause: 2200        // Quiet pause before kids return (ms)
   },
-  repairCost: 250,           // Cost per visit added to Bob's invoice (₹250)
+  dialogue: {
+    kidsWhisper: ["Shh… do it!", "Aim for the middle!", "My turn this time!"],
+    kidsGasp: ["Uh-oh!", "Run, hide!", "Duck down!"],
+    arthurAngry: ["Not AGAIN!?", "Who is doing this!?", "I need some sleep!"],
+    bobReply: ["Coming right over!", "On my way, Arthur!"],
+    bobAdvice: ["Keep an eye on those kids, Arthur.", "Third time tonight..."],
+    kidsReturn: ["He's gone… again!", "Coast is clear!"]
+  },
+  billPerRepair: 250,        // Amount added to Bob's bill per repair (₹250)
   currency: '₹',             // Currency symbol
-  hitsToBreak: {
-    pebble: 3,               // Number of hits for pebble
-    wrench: 2,               // Number of hits for wrench
-    hammer: 1                // Number of hits for hammer
+  kidHitPoints: {
+    rinku: 1,                // Pebble takes 3 hits (HP: 3 -> 2 -> 1 -> 0)
+    meera: 1.5,              // Ball takes 2 hits
+    tuttu: 3                 // Plane takes 1 hit (instant break)
   },
-  skipMultiplier: 4,         // Fast-forward speed multiplier (4x)
-  gravity: 1350              // Pixel physics gravity for canvas throws
+  gravity: 1200
 };
 ```
 
 ---
 
-## 📐 Architecture & Standards
+## 🔊 100% Procedural Synthesized Audio (Web Audio API)
 
-- **Single Self-Contained File**: Zero build step, zero npm dependencies, runs natively in any browser and GitHub Pages.
-- **FSM with Async/Await Timeline**: Clean `wait(ms, signal)` helper backed by an `AbortController` to guarantee no duplicate timers or overlapping audio on replay.
-- **Hardware-Accelerated Animation**: Only `transform` and `opacity` are animated via CSS transitions and keyframes for buttery 60fps performance without layout thrashing.
-- **Responsive 16:9 & 4:5 Aspect Ratios**: Automatically adapts to desktop screens and mobile portrait displays.
-- **Accessibility Built-In**: Keyboard navigable (`:focus-visible`), `aria-live="polite"` beat narration for screen readers, and full compliance with `prefers-reduced-motion`.
+Zero external audio files! All sounds are procedurally generated in code:
+- **Glass Shatter & Tinks**: High-pass noise bursts combined with dual-resonant thumps and multi-sine glass shards.
+- **Kids' Giggles**: Playful high-pitched melodic frequency sweeps.
+- **Door Creaks & Shutter Roll**: Filtered saw sweeps and corrugated metallic rumble.
+- **Phone Ring**: Dual-frequency (440Hz + 480Hz) telephone cadence.
+- **Ladder Clanks & Squeaks**: Metallic aluminum resonances and screw friction chirps.
+- **Warm 60Hz Power Hum**: Gentle low-frequency drone when the lamp is lit.
+
+---
+
+## 📱 Responsive & Accessible Design
+
+- **Breakpoints**: Optimized for 360px mobile, 768px tablet, 1024px desktop, and 1440px+ ultra-wide.
+- **Aspect Ratio Adaptability**: 16:9 on desktop, seamlessly adjusting on mobile screens.
+- **Accessibility**: Semantic HTML5 landmarks, visible keyboard `:focus-visible` styling, screen reader narration via `aria-live="polite"`, and `@media (prefers-reduced-motion: reduce)` support.
 
 ---
 
 ## 📄 License
 
-Open-source and released under the [MIT License](LICENSE).
+Open source and distributed under the [MIT License](LICENSE).
